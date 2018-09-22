@@ -25,8 +25,4 @@ public @interface MongoClientDefinition {
     String username() default "";
 
     String password() default "";
-
-    int maxConnections() default 20;
-
-    int currentConnections() default 5;
 }

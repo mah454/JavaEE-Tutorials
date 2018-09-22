@@ -15,8 +15,6 @@ public class MongoClientExtension implements Extension {
     private String name;
     private String url;
     private int port;
-    private int currentConnections;
-    private int maxConnections;
     private String username;
     private String password;
     private String databaseName;
@@ -27,8 +25,6 @@ public class MongoClientExtension implements Extension {
         this.name = mongoClientDefinition.name();
         this.url = mongoClientDefinition.url();
         this.port = mongoClientDefinition.port();
-        this.currentConnections = mongoClientDefinition.currentConnections();
-        this.maxConnections = mongoClientDefinition.maxConnections();
         this.databaseName = mongoClientDefinition.dbName();
         this.username = mongoClientDefinition.username();
         this.password = mongoClientDefinition.password();
@@ -46,10 +42,7 @@ public class MongoClientExtension implements Extension {
 
     private MongoClient createConnection() {
         MongoCredential credential = MongoCredential.createCredential(username, databaseName, password.toCharArray());
-        MongoClientOptions mongoClientOptions = MongoClientOptions.builder()
-                .maxConnectionLifeTime(this.maxConnections)
-                .maxConnectionIdleTime(this.currentConnections)
-                .build();
+        MongoClientOptions mongoClientOptions = MongoClientOptions.builder().build();
         return new MongoClient(new ServerAddress(url, port), credential, mongoClientOptions);
     }
 
