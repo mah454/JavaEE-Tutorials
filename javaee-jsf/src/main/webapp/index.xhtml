@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: mahsom
+  Date: 9/16/18
+  Time: 7:58 PM
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Title</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:inputText value="#{helloBean.name}" id="name"/>
+        <h:commandButton value="Send" id="action">
+            <f:ajax execute="name" render="message"/>
+        </h:commandButton>
+        <br/>
+        <h:outputText id="message" value="#{helloBean.execute()}"/>
+    </h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,4 @@
+apply plugin: 'war'
+dependencies {
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
+}

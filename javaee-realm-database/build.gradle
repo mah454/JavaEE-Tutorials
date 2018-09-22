@@ -1,0 +1,6 @@
+apply plugin: 'war'
+dependencies {
+    compile group: 'com.h2database', name: 'h2', version: '1.4.197'
+//    compile 'com.oracle:ojdbc7:12.1.0'
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
+}

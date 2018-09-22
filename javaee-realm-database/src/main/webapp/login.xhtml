@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: mahsom
+  Date: 9/17/18
+  Time: 11:41 AM
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Login Page</title>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:inputText value="#{securityBean.username}"/><br/>
+        <h:inputText value="#{securityBean.password}"/><br/>
+        <h:commandButton value="Login" action="#{securityBean.login}"/>
+    </h:form>
+</h:body>
+
+</html>
