@@ -4,7 +4,7 @@ import ir.moke.javaee.mongodb.MongoClientDefinition;
 
 @MongoClientDefinition(
         name = "mongoClient",
-        dbName = "sample",
+        dbName = "dandelion",
         username = "admin",
         password = "adminpass"
 )
