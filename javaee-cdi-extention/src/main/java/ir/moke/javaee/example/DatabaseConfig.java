@@ -7,7 +7,7 @@ import ir.moke.javaee.cdi.extension.DBConfiguration;
         description = "Simulate Database Connection",
         username = "admin",
         password = "adminpass",
-        hostname = "localhost"
+        hostname = "my-server-ip-address"
 )
 public class DatabaseConfig {
 }

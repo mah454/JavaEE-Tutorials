@@ -16,6 +16,6 @@ public class StartUpInitizlizer {
 
     @PostConstruct
     public void init() {
-        client.connect("aaa","bbb");
+        client.connect();
     }
 }

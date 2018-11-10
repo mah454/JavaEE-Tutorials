@@ -25,7 +25,7 @@ public class DBExtension implements Extension {
             abd.addBean(
                     bm.createBean(new DBClientAttributes(bm.createBeanAttributes(bm.createAnnotatedType(DBClient.class)))
                             , DBClient.class
-                            , new DBClientProducerFactory(dbConfiguration.hostname())
+                            , new DBClientProducerFactory(dbConfiguration.hostname(),dbConfiguration.username(),dbConfiguration.password())
                     )
             );
         }
@@ -73,9 +73,13 @@ public class DBExtension implements Extension {
     private static class DBClientProducerFactory implements InjectionTargetFactory<DBClient> {
 
         private String hostname;
+        private String username;
+        private String password ;
 
-        DBClientProducerFactory(String hostname) {
+        public DBClientProducerFactory(String hostname, String username, String password) {
             this.hostname = hostname;
+            this.username = username;
+            this.password = password;
         }
 
         @Override
@@ -98,7 +102,7 @@ public class DBExtension implements Extension {
 
                 @Override
                 public DBClient produce(CreationalContext<DBClient> ctx) {
-                    return new DBClient(hostname);
+                    return new DBClient(hostname,username,password);
                 }
 
                 @Override
