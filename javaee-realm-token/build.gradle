@@ -1,0 +1,5 @@
+apply plugin: 'war'
+dependencies {
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.6.0'
+    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
+}
