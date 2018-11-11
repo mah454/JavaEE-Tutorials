@@ -12,23 +12,15 @@ import javax.security.enterprise.identitystore.CredentialValidationResult;
 import javax.security.enterprise.identitystore.IdentityStoreHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Base64;
-import java.util.Set;
 
 import static javax.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
 
-
-/*@BasicAuthenticationMechanismDefinition
-public class JWTAuthenticationMechanism {}*/
-
 @RememberMe(
-        cookieMaxAgeSeconds = 60 * 60
+        cookieMaxAgeSeconds = 60 * 60,
+        isRememberMeExpression = "self.isRememberMe(httpMessageContext)"
 )
 @ApplicationScoped
 public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
-
-    private String username;
-    private String password;
 
     @Inject
     private IdentityStoreHandler identityStoreHandler;
@@ -38,22 +30,10 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 
     @Override
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext context) throws AuthenticationException {
-        extractAuthHeader(context);
-
-        /*if (username != null && password != null) {
-            CredentialValidationResult result = identityStoreHandler.validate(new UsernamePasswordCredential(username, password));
-            if (result.getStatus() == VALID) {
-                return context.notifyContainerAboutLogin(result);
-            } else {
-                return context.responseUnauthorized();
-            }
-        } else if (context.isProtected()) {
-            return context.responseUnauthorized();
-        }
-
-        return context.doNothing();*/
-
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         String token = extractToken(context);
+
         if (username != null && password != null) {
             CredentialValidationResult result = identityStoreHandler.validate(new UsernamePasswordCredential(username, password));
             if (result.getStatus() == VALID) {
@@ -73,7 +53,7 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
         try {
             if (tokenProvider.validateToken(token)) {
                 JWTCredential credential = tokenProvider.getCredential(token);
-                return context.notifyContainerAboutLogin(credential.getUsername(), (Set<String>) credential.getGroups());
+                return context.notifyContainerAboutLogin(credential.getUsername(), credential.getGroups());
             }
             return context.responseUnauthorized();
         } catch (Exception e) {
@@ -84,7 +64,6 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
 
     private AuthenticationStatus createToken(CredentialValidationResult result, HttpMessageContext context) {
         if (!isRememberMe(context)) {
-            System.out.println("AAAAAAAA");
             String jwt = tokenProvider.createToken(result.getCallerPrincipal().getName(), result.getCallerGroups());
             context.getResponse().setHeader("Authorization", "Bearer " + jwt);
         }
@@ -94,25 +73,12 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     private String extractToken(HttpMessageContext context) {
         String auth = context.getRequest().getHeader("Authorization");
         if (auth != null && auth.startsWith("Bearer")) {
-            return auth.substring("Bearer".length(), "Authorization".length());
+            return auth.substring("Bearer".length());
         }
         return null;
     }
 
     public boolean isRememberMe(HttpMessageContext context) {
         return Boolean.valueOf(context.getRequest().getParameter("rememberme"));
-    }
-
-    private void extractAuthHeader(HttpMessageContext context) {
-        String authHeader = context.getRequest().getHeader("Authorization");
-        String b64 = authHeader.split(" ")[1];
-        String decodedB64 = new String(Base64.getDecoder().decode(b64));
-        if (decodedB64.split(":").length < 2) {
-            username = null;
-            password = null;
-        } else {
-            username = decodedB64.split(":")[0];
-            password = decodedB64.split(":")[1];
-        }
     }
 }

@@ -22,7 +22,7 @@ public class JWTRememberMeIdentityStore implements RememberMeIdentityStore {
         try {
             if (tokenProvider.validateToken(rememberMeCredential.getToken())) {
                 JWTCredential jwtCredential = tokenProvider.getCredential(rememberMeCredential.getToken());
-                return new CredentialValidationResult(jwtCredential.getUsername(), (Set<String>) jwtCredential.getGroups());
+                return new CredentialValidationResult(jwtCredential.getUsername(), jwtCredential.getGroups());
             }
             return INVALID_RESULT;
         } catch (Exception e) {

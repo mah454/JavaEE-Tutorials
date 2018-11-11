@@ -4,6 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +25,8 @@ public class TokenProvider {
                 .setSigningKey("mypass")
                 .parseClaimsJws(token)
                 .getBody();
-        return new JWTCredential(claims.getSubject(), (List<String>) claims.get("groups"));
+        Set<String> groupSet = new HashSet<>((Collection<? extends String>) claims.get("groups")) ;
+        return new JWTCredential(claims.getSubject(), groupSet);
     }
 
     public boolean validateToken(String token) {

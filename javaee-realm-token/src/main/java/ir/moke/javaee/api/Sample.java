@@ -19,12 +19,9 @@ public class Sample {
         return "Hello dear ...";
     }
 
+    @Path("/bye")
     @GET
-    @Path("/login")
-    public String login() {
-        if (context.getCallerPrincipal() != null) {
-            System.out.println(context.getCallerPrincipal().getName());
-        }
-        return "Ok";
+    public String sayBye() {
+        return "Bye bye !";
     }
 }

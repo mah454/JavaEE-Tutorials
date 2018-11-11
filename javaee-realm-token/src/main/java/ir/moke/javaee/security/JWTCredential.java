@@ -1,15 +1,15 @@
 package ir.moke.javaee.security;
 
 import javax.security.enterprise.credential.Credential;
-import java.util.List;
+import java.util.Set;
 
 public class JWTCredential implements Credential {
 
-    private final String username ;
-    private final List<String> groups ;
+    private final String username;
+    private final Set<String> groups;
 
 
-    public JWTCredential(String username, List<String> groups) {
+    public JWTCredential(String username, Set<String> groups) {
         this.username = username;
         this.groups = groups;
     }
@@ -18,7 +18,7 @@ public class JWTCredential implements Credential {
         return username;
     }
 
-    public List<String> getGroups() {
+    public Set<String> getGroups() {
         return groups;
     }
 }
