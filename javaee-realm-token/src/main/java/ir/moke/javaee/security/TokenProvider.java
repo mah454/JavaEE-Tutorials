@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class TokenProvider {
 
-    public String createToken(String username , Set<String> groups) {
+    public String createToken(String username, Set<String> groups) {
         return Jwts.builder()
                 .setSubject(username)
-                .claim("groups",groups)
-                .signWith(SignatureAlgorithm.HS512,"mypass")
+                .claim("groups", groups)
+                .signWith(SignatureAlgorithm.HS512, "mypass")
                 .compact();
     }
 
@@ -24,5 +24,15 @@ public class TokenProvider {
                 .parseClaimsJws(token)
                 .getBody();
         return new JWTCredential(claims.getSubject(), (List<String>) claims.get("groups"));
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey("mypass").parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
