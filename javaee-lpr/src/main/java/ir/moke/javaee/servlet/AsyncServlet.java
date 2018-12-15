@@ -19,9 +19,15 @@ public class AsyncServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String channel = req.getPathInfo().substring(1);
+        System.out.println("open channel : " + channel);
         AsyncContext context = req.startAsync();
-        context.getResponse().getWriter().write("Connection Success .");
-        context.setTimeout(300000);
-        repo.save(context, channel);
+
+        /*
+        * NOTE : This message not send to client until executed flush method .
+        * please see SyncServlet.class .
+        * */
+        context.getResponse().getWriter().write("[*] Your message : \n");
+
+        repo.save(channel,context);
     }
 }

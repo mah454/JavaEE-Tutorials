@@ -19,7 +19,7 @@ public class SyncServlet extends HttpServlet {
     private AsyncContextRepository repo ;
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String message = req.getParameter("message");
         String channel = req.getParameter("channel");
         AsyncContext context = repo.find(channel);
