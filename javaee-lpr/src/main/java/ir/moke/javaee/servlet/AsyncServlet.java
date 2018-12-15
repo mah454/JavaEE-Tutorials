@@ -1,0 +1,27 @@
+package ir.moke.javaee.servlet;
+
+import ir.moke.javaee.repository.AsyncContextRepository;
+
+import javax.ejb.EJB;
+import javax.servlet.AsyncContext;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(value = "/async/*", asyncSupported = true)
+public class AsyncServlet extends HttpServlet {
+
+    @EJB
+    private AsyncContextRepository repo;
+
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String channel = req.getPathInfo().substring(1);
+        AsyncContext context = req.startAsync();
+        context.getResponse().getWriter().write("Connection Success .");
+        context.setTimeout(300000);
+        repo.save(context, channel);
+    }
+}
