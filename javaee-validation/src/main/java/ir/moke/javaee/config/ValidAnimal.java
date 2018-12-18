@@ -8,12 +8,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Constraint(validatedBy = { })
+@Constraint(validatedBy = {AnimalValidation.class})
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface ValidAnimal {
 
-    String message() default "Noooooooooooooooooooo";
+    String message() default "This is not valid !";
 
     Class<?>[] groups() default { };
 
