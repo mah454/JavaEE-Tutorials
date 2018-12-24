@@ -1,4 +1,4 @@
-package ir.moke.javaee.config;
+package ir.moke.javaee.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -8,10 +8,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Constraint(validatedBy = {AnimalValidation.class})
+@Constraint(validatedBy = {AnimalValidator.class})
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
-public @interface ValidAnimal {
+public @interface AnimalValidation {
 
     String message() default "This is not valid !";
 

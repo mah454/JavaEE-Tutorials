@@ -1,4 +1,4 @@
-package ir.moke.javaee.config;
+package ir.moke.javaee.validation;
 
 import ir.moke.javaee.model.Animal;
 import ir.moke.javaee.model.Dog;
@@ -9,10 +9,10 @@ import javax.json.bind.JsonbBuilder;
 import javax.validation.*;
 import java.util.Set;
 
-public class AnimalValidation implements ConstraintValidator<ValidAnimal, JsonObject> {
+public class AnimalValidator implements ConstraintValidator<AnimalValidation, JsonObject> {
 
     @Override
-    public void initialize(ValidAnimal constraintAnnotation) {
+    public void initialize(AnimalValidation constraintAnnotation) {
     }
 
     @Override
