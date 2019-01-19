@@ -1,4 +1,4 @@
-package ir.moke.javaee.config;
+package ir.moke.javaee.validation;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;

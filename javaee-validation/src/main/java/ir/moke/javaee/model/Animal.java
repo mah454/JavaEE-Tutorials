@@ -1,6 +1,5 @@
 package ir.moke.javaee.model;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -9,7 +8,6 @@ public class Animal {
 
     @NotNull(message = "Type can not be null")
     @NotEmpty (message = "Type can not be empty")
-    @Valid
     private String type ;
 
     public Animal(String type) {
