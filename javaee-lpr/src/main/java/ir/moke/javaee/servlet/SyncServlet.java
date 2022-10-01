@@ -28,6 +28,7 @@ public class SyncServlet extends HttpServlet {
             writer.write(message);
             writer.flush();
             context.complete();
+            repo.removeChannel(channel);
             resp.sendRedirect("/index.jsp");
         } else {
             System.out.println("Can not found context .");

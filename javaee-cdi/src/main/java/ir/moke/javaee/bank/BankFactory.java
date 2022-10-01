@@ -1,18 +1,23 @@
 package ir.moke.javaee.bank;
 
+import ir.moke.javaee.bank.impl.BankMellat;
+import ir.moke.javaee.bank.impl.BankSaderat;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
+@ApplicationScoped
 public class BankFactory {
 
     @Produces
-    @BankProducer(BankType.MELLAT)
-    public Bank getBankMellat() {
+    @Bank(BankType.MELLAT)
+    public BankInterface getBankMellat() {
         return new BankMellat();
     }
 
     @Produces
-    @BankProducer(BankType.SADERAT)
-    public Bank getBankSaderat() {
+    @Bank(BankType.SADERAT)
+    public BankInterface getBankSaderat() {
         return new BankSaderat();
     }
 }

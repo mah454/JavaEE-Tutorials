@@ -26,4 +26,8 @@ public class AsyncContextRepository {
     public List<String> listChannels() {
         return asyncMap.entrySet().stream().map(Map.Entry::getKey).collect(Collectors.toList());
     }
+
+    public void removeChannel(String channel) {
+        asyncMap.remove(channel);
+    }
 }

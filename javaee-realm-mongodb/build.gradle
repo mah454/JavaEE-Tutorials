@@ -1,5 +1,0 @@
-apply plugin: 'war'
-dependencies {
-    compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.1'
-    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
-}

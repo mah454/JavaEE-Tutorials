@@ -15,7 +15,7 @@ import javax.enterprise.context.ApplicationScoped;
 @DataSourceDefinition(
         name = "java:comp/env/jdbc/securityDS",
         className = "org.h2.jdbcx.JdbcDataSource",
-        url = "jdbc:h2:~/securityTest;MODE=Oracle"
+        url = "jdbc:h2:mem:securityTest;MODE=Oracle"
 )
 @ApplicationScoped
 public class DataSourceConfig {

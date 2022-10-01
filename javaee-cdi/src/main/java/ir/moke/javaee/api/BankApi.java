@@ -1,7 +1,7 @@
 package ir.moke.javaee.api;
 
 import ir.moke.javaee.bank.Bank;
-import ir.moke.javaee.bank.BankProducer;
+import ir.moke.javaee.bank.BankInterface;
 import ir.moke.javaee.bank.BankType;
 
 import javax.inject.Inject;
@@ -13,12 +13,12 @@ import javax.ws.rs.core.Response;
 public class BankApi {
 
     @Inject
-    @BankProducer(BankType.MELLAT)
-    private Bank mellat;
+    @Bank(BankType.MELLAT)
+    private BankInterface mellat;
 
     @Inject
-    @BankProducer(BankType.SADERAT)
-    private Bank saderat;
+    @Bank(BankType.SADERAT)
+    private BankInterface saderat;
 
     @GET
     @Path("/saderat")

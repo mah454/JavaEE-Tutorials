@@ -1,5 +1,0 @@
-apply plugin: 'war'
-dependencies {
-    compile group: 'org.primefaces', name: 'primefaces', version: '6.2'
-    compileOnly group: 'javax', name: 'javaee-api', version: '8.0'
-}

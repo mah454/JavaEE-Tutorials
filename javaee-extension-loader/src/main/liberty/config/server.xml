@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020.  FanapSoft Software Inc
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<server description="Tutorial server">
+    <featureManager>
+        <feature>cdi-2.0</feature>
+        <feature>beanValidation-2.0</feature>
+        <feature>appSecurity-3.0</feature>
+        <feature>managedBeans-1.0</feature>
+        <feature>localConnector-1.0</feature>
+        <feature>ejbLite-3.2</feature>
+        <feature>jaxrs-2.1</feature>
+        <feature>jsonb-1.0</feature>
+        <feature>jsonp-1.1</feature>
+        <feature>jsf-2.3</feature>
+        <feature>servlet-4.0</feature>
+    </featureManager>
+
+    <basicRegistry id="basic" realm="BasicRealm"/>
+    <httpSession securityIntegrationEnabled="false"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="${default.hostname}" httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}">
+        <httpOptions http2="enabled"/>
+    </httpEndpoint>
+    <webContainer disableXPoweredBy="true"/>
+    <applicationManager autoExpand="true"/>
+    <applicationMonitor updateTrigger="mbean"/>
+</server>

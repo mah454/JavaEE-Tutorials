@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020.  FanapSoft Software Inc
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<server description="Tutorial server">
+    <featureManager>
+        <feature>cdi-2.0</feature>
+        <feature>jndi-1.0</feature>
+        <feature>jms-2.0</feature>
+        <feature>jmsMdb-3.2</feature>
+        <feature>jaxrs-2.1</feature>
+        <!--        <feature>jakartaee-9.1</feature>-->
+    </featureManager>
+
+    <!-- Use for external ActiveMQ Artemis Server -->
+    <!--
+    <resourceAdapter id="activemq" location="${server.config.dir}resources/artemis-rar-2.23.1.rar">
+        <properties.activemq ConnectionParameters="host=localhost;port=61616" userName="admin" password="admin"/>
+    </resourceAdapter>
+
+    <jmsActivationSpec id="javaee-jms-remote/sample">
+        <properties.activemq ConnectionParameters="host=localhost;port=61616" destinationRef="sample"
+                             destinationType="javax.jms.Queue"/>
+    </jmsActivationSpec>
+
+    <jmsQueue jndiName="jms/queue/sample" id="sample">
+        <properties.activemq address="sample"/>
+    </jmsQueue>
+
+    <jmsQueue jndiName="jms/output" id="output">
+        <properties.activemq address="output"/>
+    </jmsQueue>
+
+    -->
+
+
+    <!-- Use for external ActiveMQ classic Server -->
+    <resourceAdapter id="activemq" location="${server.config.dir}resources/activemq-rar-5.17.1.rar">
+        <properties.activemq serverUrl="tcp://localhost:61616" userName="admin" password="admin"/>
+    </resourceAdapter>
+
+    <jmsActivationSpec id="javaee-jms-remote/sample">
+        <properties.activemq serverUrl="tcp://localhost:61616" destinationRef="sample"
+                             destinationType="javax.jms.Queue"/>
+    </jmsActivationSpec>
+
+    <!--
+        Note : jmsQueueConnectionFactory used for :
+
+        @JMSConnectionFactory(value = "jms/JmsFactory")
+        private JMSContext jmsContext;
+    -->
+    <!--
+    <jmsQueueConnectionFactory jndiName="jms/JmsFactory">
+        <properties.activemq/>
+    </jmsQueueConnectionFactory>
+    -->
+
+    <jmsConnectionFactory jndiName="jms/factory">
+        <properties.activemq serverUrl="tcp://localhost:61616"/>
+    </jmsConnectionFactory>
+
+    <jmsQueue jndiName="jms/queue/sample" id="sample">
+        <properties.activemq physicalName="sample"/>
+    </jmsQueue>
+
+    <basicRegistry id="basic" realm="BasicRealm"/>
+    <httpSession securityIntegrationEnabled="false"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="${default.hostname}" httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}">
+        <httpOptions http2="enabled"/>
+    </httpEndpoint>
+    <webContainer disableXPoweredBy="true"/>
+    <applicationManager autoExpand="true"/>
+    <applicationMonitor updateTrigger="mbean"/>
+</server>

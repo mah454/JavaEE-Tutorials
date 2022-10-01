@@ -20,7 +20,7 @@ public class DatabaseInitializer {
     private DataSource dataSource;
 
     @Inject
-    private Pbkdf2PasswordHash passwordHash ;
+    private Pbkdf2PasswordHash passwordHash;
 
     @PostConstruct
     public void init() {
