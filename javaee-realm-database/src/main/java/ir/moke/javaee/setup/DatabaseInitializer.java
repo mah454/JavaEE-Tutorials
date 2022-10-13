@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class DatabaseInitializer {
     private static final Logger LOGGER = Logger.getLogger(DatabaseInitializer.class.getName());
 
-    @Resource(lookup = "java:comp/env/jdbc/securityDS")
+    @Resource(lookup = "java:comp/env/jdbc/h2-datasource")
     private DataSource dataSource;
 
     @Inject
@@ -24,6 +24,7 @@ public class DatabaseInitializer {
 
     @PostConstruct
     public void init() {
+        LOGGER.info("Initialize database");
         String password = passwordHash.generate("adminpass".toCharArray());
         // IF EXISTS statement not work on oracle database .
         executeUpdate("DROP TABLE IF EXISTS USERS");

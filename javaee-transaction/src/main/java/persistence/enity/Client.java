@@ -1,10 +1,10 @@
-package persistence;
+package persistence.enity;
 
 import javax.persistence.*;
 
 @Table
 @Entity
-public class Person {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,10 +12,13 @@ public class Person {
     private String name;
     private String family;
 
-    public Person() {
+    @OneToOne
+    private Account account;
+
+    public Client() {
     }
 
-    public Person(String name, String family) {
+    public Client(String name, String family) {
         this.name = name;
         this.family = family;
     }
@@ -42,5 +45,13 @@ public class Person {
 
     public void setFamily(String family) {
         this.family = family;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

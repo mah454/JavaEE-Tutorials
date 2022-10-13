@@ -1,7 +1,7 @@
 package api;
 
-import bl.PersonManager;
-import persistence.Person;
+import bl.BankBusiness;
+import persistence.enity.Client;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -15,33 +15,33 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Stateless
-public class PersonResources {
+public class BankResources {
 
     @EJB
-    private PersonManager personManager;
+    private BankBusiness bankBusiness;
 
     @Path("/add")
     @GET
-    public Response addPerson(@QueryParam("name") @Valid @NotEmpty(message = "Please enter name") String name,
+    public Response addClient(@QueryParam("name") @Valid @NotEmpty(message = "Please enter name") String name,
                               @QueryParam("family") @Valid @NotEmpty(message = "Please enter family") String family) {
-        Person person = new Person(name, family);
-        personManager.addPerson(person);
-        return Response.ok(person).build();
+        Client client = new Client(name, family);
+        bankBusiness.openAccount(client);
+        return Response.ok(client).build();
     }
 
     @Path("/ex")
     @GET
-    public Response exAddPerson(@QueryParam("name") @Valid @NotEmpty(message = "Please enter name") String name,
+    public Response exAddClient(@QueryParam("name") @Valid @NotEmpty(message = "Please enter name") String name,
                                 @QueryParam("family") @Valid @NotEmpty(message = "Please enter family") String family) {
-        Person person = new Person(name, family);
-        personManager.exceptionalAddPerson(person);
-        return Response.ok(person).build();
+        Client client = new Client(name, family);
+        bankBusiness.exceptionalAddClient(client);
+        return Response.ok(client).build();
     }
 
     @Path("/list")
     @GET
     public Response personList() {
-        var people = personManager.personList();
+        var people = bankBusiness.personList();
         return Response.ok(people).build();
     }
 

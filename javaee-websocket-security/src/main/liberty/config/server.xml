@@ -30,7 +30,7 @@
         <feature>servlet-4.0</feature>
         <feature>appSecurity-2.0</feature>
         <feature>jpa-2.2</feature>
-        <feature>concurrent-1.0</feature>
+        <feature>websocket-1.1</feature>
     </featureManager>
 
     <basicRegistry id="basic" realm="BasicRealm"/>

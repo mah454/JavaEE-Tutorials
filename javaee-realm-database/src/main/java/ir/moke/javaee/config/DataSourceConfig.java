@@ -13,9 +13,9 @@ import javax.enterprise.context.ApplicationScoped;
         url = "jdbc:oracle:thin:@oracle-database:1521/pdb_javaee"
 )*/
 @DataSourceDefinition(
-        name = "java:comp/env/jdbc/securityDS",
+        name = "java:comp/env/jdbc/h2-datasource",
         className = "org.h2.jdbcx.JdbcDataSource",
-        url = "jdbc:h2:mem:securityTest;MODE=Oracle"
+        url = "jdbc:h2:/tmp/testDB;AUTO_SERVER=TRUE;MODE=Oracle"
 )
 @ApplicationScoped
 public class DataSourceConfig {
