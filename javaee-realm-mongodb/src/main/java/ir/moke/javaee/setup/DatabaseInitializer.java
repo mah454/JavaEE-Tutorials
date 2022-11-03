@@ -5,12 +5,12 @@ import ir.moke.javaee.model.RoleType;
 import ir.moke.javaee.model.User;
 import ir.moke.javaee.repository.UserRepository;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 @Singleton
 @Startup

@@ -5,10 +5,10 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.*;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.inject.Default;
+import jakarta.enterprise.inject.spi.*;
 
 public class MongoClientExtension implements Extension {
 

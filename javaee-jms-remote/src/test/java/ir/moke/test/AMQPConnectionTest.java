@@ -3,8 +3,8 @@ package ir.moke.test;
 import org.apache.activemq.artemis.api.jms.ActiveMQJMSClient;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 
-import javax.jms.*;
-import javax.naming.InitialContext;
+import jakarta.jms.*;
+import jakarta.naming.InitialContext;
 
 public class AMQPConnectionTest {
     public static void main(final String[] args) throws Exception {

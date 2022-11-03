@@ -2,11 +2,11 @@ package ir.moke.javaee.extension;
 
 import ir.moke.javaee.annotation.CustomAPI;
 
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.Instance;
-import javax.enterprise.inject.spi.*;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.inject.Default;
+import jakarta.enterprise.inject.Instance;
+import jakarta.enterprise.inject.spi.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 

@@ -1,11 +1,11 @@
 package ir.moke.jaavee;
 
-import javax.inject.Inject;
-import javax.jms.*;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.jms.*;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Response;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Path("/message")

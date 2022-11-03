@@ -2,8 +2,8 @@ package ir.moke.javaee.bank.impl;
 
 import ir.moke.javaee.bank.BankInterface;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Singleton;
 
 @Singleton
 public class BankMellat implements BankInterface {

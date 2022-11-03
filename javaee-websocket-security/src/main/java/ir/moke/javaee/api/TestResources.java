@@ -1,8 +1,8 @@
 package ir.moke.javaee.api;
 
-import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 
 @Path("/test")
 public class TestResources {

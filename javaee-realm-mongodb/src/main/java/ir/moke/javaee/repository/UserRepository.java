@@ -4,9 +4,9 @@ import com.mongodb.client.MongoCollection;
 import ir.moke.javaee.model.User;
 import ir.moke.javaee.mongodb.Mongo;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 
 import static com.mongodb.client.model.Filters.eq;
 

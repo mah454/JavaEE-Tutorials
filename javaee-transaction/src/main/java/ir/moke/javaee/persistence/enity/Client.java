@@ -1,19 +1,18 @@
-package persistence.enity;
+package ir.moke.javaee.persistence.enity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Table
 @Entity
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String name;
     private String family;
-
-    @OneToOne
-    private Account account;
+    @Column(unique = true)
+    private String nationalCode;
 
     public Client() {
     }
@@ -47,11 +46,21 @@ public class Client {
         this.family = family;
     }
 
-    public Account getAccount() {
-        return account;
+    public String getNationalCode() {
+        return nationalCode;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setNationalCode(String nationalCode) {
+        this.nationalCode = nationalCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", family='" + family + '\'' +
+                ", nationalCode='" + nationalCode + '\'' +
+                '}';
     }
 }

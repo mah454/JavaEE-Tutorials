@@ -1,10 +1,10 @@
 package ir.moke.javaee.api;
 
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
-import javax.security.enterprise.SecurityContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 
 @Path("/sample")
 public class Sample {

@@ -2,10 +2,10 @@ package ir.moke.javaee.example;
 
 import ir.moke.javaee.db.DBClient;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.inject.Inject;
 
 @Singleton
 @Startup

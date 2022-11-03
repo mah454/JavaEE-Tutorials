@@ -2,7 +2,7 @@ package ir.moke.javaee.bank.impl;
 
 import ir.moke.javaee.bank.BankInterface;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 public class BankSaderat implements BankInterface {
 

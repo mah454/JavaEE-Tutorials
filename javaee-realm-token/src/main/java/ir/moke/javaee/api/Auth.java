@@ -1,17 +1,14 @@
 package ir.moke.javaee.api;
 
-import javax.inject.Inject;
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.security.enterprise.SecurityContext;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.SecurityContext;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.Response;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Path("/auth")
 public class Auth {
@@ -19,18 +16,15 @@ public class Auth {
     private static final Logger LOGGER = Logger.getLogger(Auth.class.getName());
 
     @Inject
-    private SecurityContext context;
+    private SecurityContext securityContext;
 
     @GET
-    @Path("/login")
-    public Response login() {
+    public Response login(@QueryParam("username") String username, @QueryParam("password") String password) {
         LOGGER.log(Level.INFO, "login");
-        if (context.getCallerPrincipal() != null) {
-            JsonObject result = Json.createObjectBuilder()
-                    .add("user", context.getCallerPrincipal().getName())
-                    .build();
-            return Response.ok(result).build();
+        if (securityContext.getCallerPrincipal() != null) {
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         }
-        return Response.status(UNAUTHORIZED).build();
     }
 }

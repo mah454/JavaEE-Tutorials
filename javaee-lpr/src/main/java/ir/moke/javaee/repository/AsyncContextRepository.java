@@ -1,7 +1,7 @@
 package ir.moke.javaee.repository;
 
-import javax.ejb.Singleton;
-import javax.servlet.AsyncContext;
+import jakarta.ejb.Singleton;
+import jakarta.servlet.AsyncContext;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

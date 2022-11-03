@@ -1,19 +1,19 @@
 package ir.moke.javaee.security;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.security.enterprise.credential.Credential;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.IdentityStore;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import static java.util.Collections.singleton;
-import static javax.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
-import static javax.security.enterprise.identitystore.CredentialValidationResult.NOT_VALIDATED_RESULT;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.NOT_VALIDATED_RESULT;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
 
 @RequestScoped
 public class AuthenticationIdentityStore implements IdentityStore {
@@ -30,8 +30,7 @@ public class AuthenticationIdentityStore implements IdentityStore {
     public CredentialValidationResult validate(Credential credential) {
         CredentialValidationResult result;
 
-        if (credential instanceof UsernamePasswordCredential) {
-            UsernamePasswordCredential usernamePassword = (UsernamePasswordCredential) credential;
+        if (credential instanceof UsernamePasswordCredential usernamePassword) {
             String password = callerPassword.get(usernamePassword.getCaller());
             if (password != null && password.equals(usernamePassword.getPasswordAsString())) {
                 result = new CredentialValidationResult(usernamePassword.getCaller());

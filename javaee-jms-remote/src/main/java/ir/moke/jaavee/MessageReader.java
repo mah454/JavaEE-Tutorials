@@ -1,10 +1,10 @@
 package ir.moke.jaavee;
 
 
-import javax.ejb.MessageDriven;
-import javax.jms.Message;
-import javax.jms.MessageListener;
-import javax.jms.TextMessage;
+import jakarta.ejb.MessageDriven;
+import jakarta.jms.Message;
+import jakarta.jms.MessageListener;
+import jakarta.jms.TextMessage;
 
 @MessageDriven(name = "sample")
 public class MessageReader implements MessageListener {

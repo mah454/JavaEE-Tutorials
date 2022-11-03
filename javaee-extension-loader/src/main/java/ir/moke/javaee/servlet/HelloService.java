@@ -1,6 +1,6 @@
 package ir.moke.javaee.servlet;
 
-import javax.ejb.Stateless;
+import jakarta.ejb.Stateless;
 
 @Stateless
 public class HelloService {

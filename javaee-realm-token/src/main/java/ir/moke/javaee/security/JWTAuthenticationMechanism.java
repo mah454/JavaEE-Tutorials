@@ -1,19 +1,20 @@
 package ir.moke.javaee.security;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.security.enterprise.AuthenticationException;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
-import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
-import javax.security.enterprise.authentication.mechanism.http.RememberMe;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.IdentityStoreHandler;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.AuthenticationException;
+import jakarta.security.enterprise.AuthenticationStatus;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
+import jakarta.security.enterprise.authentication.mechanism.http.HttpMessageContext;
+import jakarta.security.enterprise.authentication.mechanism.http.RememberMe;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStoreHandler;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import static javax.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.Status.VALID;
 
 @RememberMe(
         cookieMaxAgeSeconds = 60 * 60,
@@ -41,23 +42,22 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
             }
             return context.responseUnauthorized();
         } else if (token != null) {
-            return validateToken(token, context);
+            return verifyToken(token, context);
         } else if (context.isProtected()) {
             return context.responseUnauthorized();
         }
         return context.doNothing();
     }
 
-    @SuppressWarnings("unchecked")
-    private AuthenticationStatus validateToken(String token, HttpMessageContext context) {
+    private AuthenticationStatus verifyToken(String token, HttpMessageContext context) {
         try {
-            if (tokenProvider.validateToken(token)) {
+            DecodedJWT decodedJWT = tokenProvider.verify(token);
+            if (decodedJWT != null) {
                 JWTCredential credential = tokenProvider.getCredential(token);
-                return context.notifyContainerAboutLogin(credential.getUsername(), credential.getGroups());
+                return context.notifyContainerAboutLogin(credential.username(), credential.groups());
             }
             return context.responseUnauthorized();
         } catch (Exception e) {
-            e.printStackTrace();
             return context.responseUnauthorized();
         }
     }
@@ -73,12 +73,12 @@ public class JWTAuthenticationMechanism implements HttpAuthenticationMechanism {
     private String extractToken(HttpMessageContext context) {
         String auth = context.getRequest().getHeader("Authorization");
         if (auth != null && auth.startsWith("Bearer")) {
-            return auth.substring("Bearer".length());
+            return auth.substring("Bearer".length()).trim();
         }
         return null;
     }
 
     public boolean isRememberMe(HttpMessageContext context) {
-        return Boolean.valueOf(context.getRequest().getParameter("rememberme"));
+        return Boolean.parseBoolean(context.getRequest().getParameter("rememberme"));
     }
 }

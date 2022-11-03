@@ -4,12 +4,12 @@ import ir.moke.javaee.model.Group;
 import ir.moke.javaee.model.User;
 import ir.moke.javaee.repository.UserRepository;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
-import javax.inject.Inject;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
+import jakarta.ejb.Startup;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import java.util.ArrayList;
 import java.util.List;
 

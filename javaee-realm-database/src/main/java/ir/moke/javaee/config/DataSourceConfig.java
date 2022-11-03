@@ -1,7 +1,7 @@
 package ir.moke.javaee.config;
 
-import javax.annotation.sql.DataSourceDefinition;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.enterprise.context.ApplicationScoped;
 
 
 // Read comment on DatabaseInitializer.java

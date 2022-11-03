@@ -2,9 +2,9 @@ package ir.moke.javaee.api.jaxrs;
 
 import ir.moke.javaee.servlet.HelloService;
 
-import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ws.rs.Path;
+import jakarta.ejb.EJB;
+import jakarta.ejb.Singleton;
+import jakarta.ws.rs.Path;
 
 @Path("/hello")
 @Singleton

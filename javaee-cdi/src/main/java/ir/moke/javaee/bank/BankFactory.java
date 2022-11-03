@@ -3,8 +3,8 @@ package ir.moke.javaee.bank;
 import ir.moke.javaee.bank.impl.BankMellat;
 import ir.moke.javaee.bank.impl.BankSaderat;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
 
 @ApplicationScoped
 public class BankFactory {

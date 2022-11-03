@@ -1,14 +1,15 @@
 package ir.moke.javaee.security;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.security.enterprise.CallerPrincipal;
-import javax.security.enterprise.credential.RememberMeCredential;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.RememberMeIdentityStore;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.CallerPrincipal;
+import jakarta.security.enterprise.credential.RememberMeCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.RememberMeIdentityStore;
 import java.util.Set;
 
-import static javax.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
 
 @RequestScoped
 public class JWTRememberMeIdentityStore implements RememberMeIdentityStore {
@@ -16,13 +17,13 @@ public class JWTRememberMeIdentityStore implements RememberMeIdentityStore {
     @Inject
     private TokenProvider tokenProvider;
 
-    @SuppressWarnings("unchecked")
     @Override
     public CredentialValidationResult validate(RememberMeCredential rememberMeCredential) {
         try {
-            if (tokenProvider.validateToken(rememberMeCredential.getToken())) {
+            DecodedJWT decodedJWT = tokenProvider.verify(rememberMeCredential.getToken());
+            if (decodedJWT != null) {
                 JWTCredential jwtCredential = tokenProvider.getCredential(rememberMeCredential.getToken());
-                return new CredentialValidationResult(jwtCredential.getUsername(), jwtCredential.getGroups());
+                return new CredentialValidationResult(jwtCredential.username(), jwtCredential.groups());
             }
             return INVALID_RESULT;
         } catch (Exception e) {

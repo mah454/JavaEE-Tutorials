@@ -1,7 +1,7 @@
 package ir.moke.javaee.api.jaxrs;
 
-import javax.ejb.Local;
-import javax.ws.rs.GET;
+import jakarta.ejb.Local;
+import jakarta.ws.rs.GET;
 
 @Local
 public interface ExampleApi {

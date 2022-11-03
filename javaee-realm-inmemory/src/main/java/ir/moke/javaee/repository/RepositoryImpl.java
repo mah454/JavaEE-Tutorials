@@ -3,8 +3,8 @@ package ir.moke.javaee.repository;
 import ir.moke.javaee.exceptions.UserNotFoundException;
 import ir.moke.javaee.model.UserDetail;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 

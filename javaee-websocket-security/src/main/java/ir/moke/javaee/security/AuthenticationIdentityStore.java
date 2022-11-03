@@ -3,19 +3,19 @@ package ir.moke.javaee.security;
 import ir.moke.javaee.model.User;
 import ir.moke.javaee.repository.UserRepository;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.security.enterprise.credential.Credential;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.IdentityStore;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.credential.Credential;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStore;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import java.util.EnumSet;
 import java.util.Set;
 
-import static javax.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.VALIDATE;
 
 @ApplicationScoped
 public class AuthenticationIdentityStore implements IdentityStore {

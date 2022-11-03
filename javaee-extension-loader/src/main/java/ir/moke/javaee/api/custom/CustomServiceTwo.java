@@ -5,8 +5,8 @@ import ir.moke.javaee.annotation.Command;
 import ir.moke.javaee.annotation.CustomAPI;
 import ir.moke.javaee.servlet.HelloService;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
 
 @CustomAPI
 public class CustomServiceTwo {

@@ -2,10 +2,10 @@ package ir.moke.javaee.cdi.extension;
 
 import ir.moke.javaee.db.DBClient;
 
-import javax.enterprise.context.spi.CreationalContext;
-import javax.enterprise.event.Observes;
-import javax.enterprise.inject.Default;
-import javax.enterprise.inject.spi.*;
+import jakarta.enterprise.context.spi.CreationalContext;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.inject.Default;
+import jakarta.enterprise.inject.spi.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.Collections;

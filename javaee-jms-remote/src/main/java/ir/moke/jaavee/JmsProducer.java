@@ -1,10 +1,10 @@
 package ir.moke.jaavee;
 
-import javax.annotation.Resource;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Produces;
-import javax.inject.Named;
-import javax.jms.*;
+import jakarta.annotation.Resource;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Produces;
+import jakarta.inject.Named;
+import jakarta.jms.*;
 
 @ApplicationScoped
 public class JmsProducer {

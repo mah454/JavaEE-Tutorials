@@ -4,15 +4,15 @@ import ir.moke.javaee.model.Group;
 import ir.moke.javaee.model.User;
 import ir.moke.javaee.repository.UserRepository;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.ApplicationScoped;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import javax.security.enterprise.identitystore.IdentityStore;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStore;
 import java.util.EnumSet;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
-import static javax.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
+import static jakarta.security.enterprise.identitystore.IdentityStore.ValidationType.PROVIDE_GROUPS;
 
 @ApplicationScoped
 public class AuthorizationIdentityStore implements IdentityStore {

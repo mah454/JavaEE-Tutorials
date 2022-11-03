@@ -3,10 +3,10 @@ package ir.moke.javaee.core;
 import ir.moke.javaee.interceptor.ValidationInterceptor;
 import ir.moke.javaee.validation.AnimalValidation;
 
-import javax.ejb.Asynchronous;
-import javax.ejb.Singleton;
-import javax.enterprise.event.Observes;
-import javax.json.JsonObject;
+import jakarta.ejb.Asynchronous;
+import jakarta.ejb.Singleton;
+import jakarta.enterprise.event.Observes;
+import jakarta.json.JsonObject;
 
 @Singleton
 public class Wrapper {

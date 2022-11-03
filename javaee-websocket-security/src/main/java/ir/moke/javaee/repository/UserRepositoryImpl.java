@@ -2,8 +2,8 @@ package ir.moke.javaee.repository;
 
 import ir.moke.javaee.model.User;
 
-import javax.ejb.Stateless;
-import javax.ws.rs.NotFoundException;
+import jakarta.ejb.Stateless;
+import jakarta.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

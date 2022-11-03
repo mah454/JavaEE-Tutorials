@@ -2,7 +2,7 @@ package ir.moke.javaee.repository;
 
 import ir.moke.javaee.model.User;
 
-import javax.ejb.Local;
+import jakarta.ejb.Local;
 import java.util.List;
 
 @Local

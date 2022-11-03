@@ -3,10 +3,10 @@ package ir.moke.javaee.validation;
 import ir.moke.javaee.model.Animal;
 import ir.moke.javaee.model.Dog;
 
-import javax.json.JsonObject;
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.validation.*;
+import jakarta.json.JsonObject;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.validation.*;
 import java.util.Set;
 
 public class AnimalValidator implements ConstraintValidator<AnimalValidation, JsonObject> {
