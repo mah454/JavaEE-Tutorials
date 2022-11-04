@@ -1,9 +1,8 @@
 package ir.moke.javaee.api;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 @ApplicationScoped
 public class ConfigInventory {
@@ -20,11 +19,11 @@ public class ConfigInventory {
     private String family;
 
     /**
-     * Read config from liberty bootstrap.properties
+     * Read config from bootstrap.properties (Liberty application server)
      */
     @Inject
-    @ConfigProperty(name = "age")
-    private int age;
+    @ConfigProperty(name = "age" , defaultValue = "12")
+    private Integer age;
 
     public String getName() {
         return name;

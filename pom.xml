@@ -160,7 +160,10 @@
                     <artifactId>tomee-maven-plugin</artifactId>
                     <version>9.0.0-M8</version>
                     <configuration>
-                        <tomeeClassifier>plus</tomeeClassifier>
+                        <args>-Dtomee.mp.scan=all</args>
+                        <tomeeClassifier>plume</tomeeClassifier>
+                        <context>ROOT</context>
+                        <tomeeVersion>9.0.0.RC1</tomeeVersion>
                     </configuration>
                 </plugin>
             </plugins>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server description="Tutorial server">
     <featureManager>
+        <feature>mpOpenAPI-3.0</feature>
         <feature>cdi-3.0</feature>
         <feature>concurrent-2.0</feature>
         <feature>restfulWS-3.0</feature>
