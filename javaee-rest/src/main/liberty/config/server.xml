@@ -36,6 +36,4 @@
         <httpOptions http2="enabled"/>
     </httpEndpoint>
     <webContainer disableXPoweredBy="true"/>
-    <applicationManager autoExpand="true"/>
-    <applicationMonitor updateTrigger="mbean"/>
 </server>
