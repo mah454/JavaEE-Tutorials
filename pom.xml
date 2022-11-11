@@ -39,6 +39,7 @@
         <module>javaee-rest</module>
         <module>javaee-validation</module>
         <module>javaee-websocket-security</module>
+        <module>javaee-mongodb</module>
     </modules>
 
 
@@ -72,7 +73,11 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>6.1.4.Final</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongodb-driver</artifactId>
+                <version>3.12.11</version>
+            </dependency>
             <!-- Test -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
