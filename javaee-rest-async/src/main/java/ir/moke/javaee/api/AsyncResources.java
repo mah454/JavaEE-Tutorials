@@ -1,45 +1,55 @@
 package ir.moke.javaee.api;
 
-import ir.moke.javaee.Processor;
-import jakarta.annotation.Resource;
-import jakarta.ejb.EJB;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.concurrent.ManagedExecutorService;
+import jakarta.ejb.Asynchronous;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.container.AsyncResponse;
+import jakarta.ws.rs.container.Suspended;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.TimeUnit;
 
 @Path("/process")
-@Stateless
+//@Stateless
 @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
 @Consumes({MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-public class ClientResources {
-
-    @EJB
-    private Processor processor;
-
-    @Resource
-    private ManagedExecutorService mes ;
+public class AsyncResources {
 
     @GET
     @Path("async")
-    public Future<Response> logProcessing() {
-        CompletableFuture<String> future = mes.supplyAsync(this::process);
-        return future.thenApply(item -> Response.ok(item).build());
+    @Asynchronous
+    public void processor(@Suspended final AsyncResponse asyncResponse) {
+        CompletableFuture.supplyAsync(this::process).thenApply(asyncResponse::resume);
     }
 
-    private String process() {
+    @GET
+    @Path("async2")
+    @Asynchronous
+    public CompletionStage<Response> processor2() {
+        return CompletableFuture.supplyAsync(this::process);
+    }
+
+    @GET
+    @Path("async3")
+    @Asynchronous
+    public void processor3(@Suspended final AsyncResponse asyncResponse) {
+        asyncResponse.setTimeout(2, TimeUnit.SECONDS);
+        asyncResponse.setTimeoutHandler(response -> response.resume(Response.noContent().build()));
+        CompletableFuture.supplyAsync(this::process);
+    }
+
+    private Response process() {
         try {
             Thread.sleep(3000);
+            System.out.println("Processed");
+            return Response.ok("Hello").build();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return "Hello";
     }
 }

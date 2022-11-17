@@ -37,6 +37,7 @@
         <module>javaee-jms-remote</module>
         <module>javaee-realm-mongodb</module>
         <module>javaee-rest</module>
+        <module>javaee-rest-async</module>
         <module>javaee-validation</module>
         <module>javaee-websocket-security</module>
         <module>javaee-mongodb</module>
