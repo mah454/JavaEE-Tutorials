@@ -41,6 +41,8 @@
         <module>javaee-validation</module>
         <module>javaee-websocket-security</module>
         <module>javaee-mongodb</module>
+        <module>javaee-concurrency</module>
+        <module>javaee-pagination</module>
     </modules>
 
 

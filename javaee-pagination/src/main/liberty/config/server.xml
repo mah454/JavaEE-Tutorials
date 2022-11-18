@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Tutorial server">
+    <featureManager>
+        <feature>enterpriseBeansLite-4.0</feature>
+        <feature>mpOpenAPI-3.0</feature>
+        <feature>cdi-3.0</feature>
+        <feature>concurrent-2.0</feature>
+        <feature>restfulWS-3.0</feature>
+        <feature>json-1.0</feature>
+        <feature>jsonb-2.0</feature>
+        <feature>jsonp-2.0</feature>
+        <feature>persistence-3.0</feature>
+    </featureManager>
+
+    <library id="project-libs">
+        <fileset dir="${server.config.dir}/lib/global/" includes="*.jar"/>
+    </library>
+
+    <dataSource id="h2-datasource" jndiName="jdbc/datasource">
+        <!-- Define the DataSource class names on the <jdbcDriver> element -->
+        <jdbcDriver
+                javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+                libraryRef="project-libs"/>
+        <!-- set the connection URL on the <properties> element.
+             this corresponds to the setURL() method on H2's JdbcDataSource class.
+             you may also list any properties here that have a corresponding setXXX method on H2's JdbcDataSource class -->
+        <properties URL="jdbc:h2:mem:testdb"/>
+    </dataSource>
+
+
+    <basicRegistry id="basic" realm="BasicRealm"/>
+    <httpSession securityIntegrationEnabled="false"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="${default.hostname}" httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}">
+        <httpOptions http2="enabled"/>
+    </httpEndpoint>
+    <webContainer disableXPoweredBy="true"/>
+</server>
