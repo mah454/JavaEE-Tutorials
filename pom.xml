@@ -45,6 +45,7 @@
         <module>javaee-pagination</module>
         <module>javaee-sse</module>
         <module>javaee-upload-file</module>
+        <module>javaee-servlet</module>
     </modules>
 
 
