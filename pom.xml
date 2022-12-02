@@ -47,6 +47,7 @@
         <module>javaee-upload-file</module>
         <module>javaee-servlet</module>
         <module>javaee-datasource</module>
+        <module>javaee-scheduler</module>
     </modules>
 
 
