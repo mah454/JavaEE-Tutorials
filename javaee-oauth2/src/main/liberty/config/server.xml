@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Tutorial server">
+    <featureManager>
+        <!--        <feature>mpOpenAPI-3.1</feature>-->
+        <!--        <feature>cdi-4.0</feature>-->
+        <!--        <feature>concurrent-3.0</feature>-->
+        <!--        <feature>restfulWS-3.0</feature>-->
+        <!--        <feature>jsonb-3.0</feature>-->
+        <feature>servlet-6.0</feature>
+        <feature>socialLogin-1.0</feature>
+        <feature>appSecurity-5.0</feature>
+        <feature>pages-3.1</feature> <!-- Needed for JSP -->
+    </featureManager>
+
+    <library id="project-libs">
+        <fileset dir="${server.config.dir}/lib/global/" includes="*.jar"/>
+    </library>
+
+    <dataSource id="h2-datasource" jndiName="jdbc/datasource">
+        <!-- Define the DataSource class names on the <jdbcDriver> element -->
+        <jdbcDriver
+                javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+                javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
+                libraryRef="project-libs"/>
+        <!-- set the connection URL on the <properties> element.
+             this corresponds to the setURL() method on H2's JdbcDataSource class.
+             you may also list any properties here that have a corresponding setXXX method on H2's JdbcDataSource class -->
+        <properties URL="jdbc:h2:mem:testdb"/>
+    </dataSource>
+
+
+    <basicRegistry id="basic" realm="BasicRealm"/>
+    <httpSession securityIntegrationEnabled="false"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="${default.hostname}" httpPort="${default.http.port}"
+                  httpsPort="${default.https.port}">
+        <httpOptions http2="enabled"/>
+    </httpEndpoint>
+    <webContainer disableXPoweredBy="true"/>
+
+    <ssl id="defaultSSLConfig"
+         keyStoreRef="defaultKeyStore"
+         trustDefaultCerts="true"/>
+
+    <!-- OAuth2 configuration -->
+    <githubLogin clientId="${github.client.id}"
+                 clientSecret="${github.client.secret}"/>
+
+    <webApplication location="javaee-oauth2.war"
+                    contextRoot="${app.context.root}">
+        <application-bnd>
+            <security-role name="users">
+                <special-subject type="ALL_AUTHENTICATED_USERS"/>
+            </security-role>
+        </application-bnd>
+    </webApplication>
+</server>

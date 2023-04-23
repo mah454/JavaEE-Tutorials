@@ -48,6 +48,7 @@
         <module>javaee-servlet</module>
         <module>javaee-datasource</module>
         <module>javaee-scheduler</module>
+        <module>javaee-oauth2</module>
     </modules>
 
 
