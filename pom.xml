@@ -49,6 +49,7 @@
         <module>javaee-datasource</module>
         <module>javaee-scheduler</module>
         <module>javaee-oauth2</module>
+        <module>javaee-filter</module>
     </modules>
 
 
